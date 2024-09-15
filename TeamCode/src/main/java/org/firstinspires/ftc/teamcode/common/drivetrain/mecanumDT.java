@@ -1,8 +1,5 @@
 package org.firstinspires.ftc.teamcode.common.drivetrain;
 
 public class mecanumDT {
-    //poate da
-
-
-    //nahhhhh
+   //TODO: research and implement mecanum drive
 }
