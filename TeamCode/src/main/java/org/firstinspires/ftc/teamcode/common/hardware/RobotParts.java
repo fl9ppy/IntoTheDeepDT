@@ -1,10 +1,9 @@
 package org.firstinspires.ftc.teamcode.common.hardware;
 
 import com.qualcomm.hardware.lynx.LynxModule;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.configuration.LynxConstants;
-
-import org.firstinspires.ftc.teamcode.common.subsystems.FourbarSubsystem;
 
 import java.util.List;
 
@@ -12,6 +11,7 @@ import java.util.List;
 public class RobotParts {
 
     //Declarations
+    public CRServo intake;
 
     public static RobotParts instance = null;
     private boolean enabled;
@@ -27,6 +27,7 @@ public class RobotParts {
     public void init(final HardwareMap hardwareMap){
 
         //HardwareMap
+        intake = hardwareMap.get(CRServo.class, "intake");
 
         for (LynxModule m : modules) {
             m.setBulkCachingMode(LynxModule.BulkCachingMode.MANUAL);
