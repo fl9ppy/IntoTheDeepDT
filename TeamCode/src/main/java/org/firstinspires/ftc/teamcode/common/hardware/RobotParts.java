@@ -4,8 +4,6 @@ import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.configuration.LynxConstants;
 
-import org.firstinspires.ftc.teamcode.common.subsystems.FourbarSubsystem;
-
 import java.util.List;
 
 
