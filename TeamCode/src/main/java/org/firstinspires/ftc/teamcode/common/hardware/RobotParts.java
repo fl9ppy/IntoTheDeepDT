@@ -26,6 +26,8 @@ public class RobotParts {
 
         //HardwareMap
 
+        modules = hardwareMap.getAll(LynxModule.class);
+
         for (LynxModule m : modules) {
             m.setBulkCachingMode(LynxModule.BulkCachingMode.MANUAL);
             if (m.isParent() && LynxConstants.isEmbeddedSerialNumber(m.getSerialNumber())) CONTROL_HUB = m;

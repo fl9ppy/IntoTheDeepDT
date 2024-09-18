@@ -17,11 +17,10 @@ import org.firstinspires.ftc.teamcode.common.hardware.GlobalVars;
 public class Drive extends CommandOpMode {
 
     MecanumDrive drive = new MecanumDrive(hardwareMap, new Pose2d(0, 0, 0));
+    GlobalVars.Modedrive currentMode = GlobalVars.Modedrive.DRIVER_CONTROL;
 
     private GamepadEx p1;
     private GamepadEx p2;
-
-    GlobalVars.Modedrive currentMode = GlobalVars.Modedrive.DRIVER_CONTROL;
 
     public void initialize(){
         CommandScheduler.getInstance().reset();
