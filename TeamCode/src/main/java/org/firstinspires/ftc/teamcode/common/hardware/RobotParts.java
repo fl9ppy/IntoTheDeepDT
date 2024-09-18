@@ -8,9 +8,6 @@ import java.util.List;
 
 
 public class RobotParts {
-
-    //Declarations
-
     public static RobotParts instance = null;
     private boolean enabled;
 
@@ -23,9 +20,6 @@ public class RobotParts {
         return instance;
     }
     public void init(final HardwareMap hardwareMap){
-
-        //HardwareMap
-
         modules = hardwareMap.getAll(LynxModule.class);
 
         for (LynxModule m : modules) {
@@ -38,6 +32,4 @@ public class RobotParts {
     public void kill() {
         instance = null;
     }
-
-
 }
