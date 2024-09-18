@@ -11,10 +11,13 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.MecanumDrive;
 import org.firstinspires.ftc.teamcode.common.hardware.GlobalVars;
+import org.firstinspires.ftc.teamcode.common.hardware.RobotParts;
 
 @TeleOp(name="Drive", group = "Main")
 
 public class Drive extends CommandOpMode {
+
+    private final RobotParts robot = RobotParts.getInstance();
 
     MecanumDrive drive = new MecanumDrive(hardwareMap, new Pose2d(0, 0, 0));
     GlobalVars.Modedrive currentMode = GlobalVars.Modedrive.DRIVER_CONTROL;
@@ -30,7 +33,8 @@ public class Drive extends CommandOpMode {
 
     }
     public void run(){
-
+        CommandScheduler.getInstance().run();
+        robot.clearBulkCache();
         if (p1.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) >= 0.5) currentMode = GlobalVars.Modedrive.TURBO;
         else if (p1.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) >= 0.5) currentMode = GlobalVars.Modedrive.PRECISION;
         else currentMode = GlobalVars.Modedrive.DRIVER_CONTROL;
