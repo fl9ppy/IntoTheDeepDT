@@ -6,6 +6,7 @@ import com.acmerobotics.roadrunner.Vector2d;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
+import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.MecanumDrive;
@@ -27,11 +28,12 @@ public class Drive extends CommandOpMode {
 
         p1=new GamepadEx(gamepad1);
         p2=new GamepadEx(gamepad2);
+
     }
     public void run(){
 
-        if (gamepad1.right_trigger >= 0.5) currentMode = GlobalVars.Modedrive.TURBO;
-        else if (gamepad1.left_trigger >= 0.5) currentMode = GlobalVars.Modedrive.PRECISION;
+        if (p1.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) >= 0.5) currentMode = GlobalVars.Modedrive.TURBO;
+        else if (p1.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) >= 0.5) currentMode = GlobalVars.Modedrive.PRECISION;
         else currentMode = GlobalVars.Modedrive.DRIVER_CONTROL;
 
         double driveScale = (currentMode == GlobalVars.Modedrive.TURBO) ? GlobalVars.TURBO_SCALE
