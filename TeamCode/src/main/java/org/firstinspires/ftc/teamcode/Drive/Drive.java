@@ -11,32 +11,28 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.MecanumDrive;
 import org.firstinspires.ftc.teamcode.common.hardware.GlobalVars;
-import org.firstinspires.ftc.teamcode.common.hardware.RobotParts;
 
 @TeleOp(name="Drive", group = "Main")
 
 public class Drive extends CommandOpMode {
+    private GamepadEx gamepadEx1;
+    private GamepadEx gamepadEx2;
 
-    private final RobotParts robot = RobotParts.getInstance();
-
-    MecanumDrive drive = new MecanumDrive(hardwareMap, new Pose2d(0, 0, 0));
-    GlobalVars.Modedrive currentMode = GlobalVars.Modedrive.DRIVER_CONTROL;
-
-    private GamepadEx p1;
-    private GamepadEx p2;
+    MecanumDrive drive;
+    GlobalVars.Modedrive currentMode;
 
     public void initialize(){
         CommandScheduler.getInstance().reset();
 
-        p1=new GamepadEx(gamepad1);
-        p2=new GamepadEx(gamepad2);
+        drive = new MecanumDrive(hardwareMap, new Pose2d(0, 0, 0));
+        currentMode = GlobalVars.Modedrive.DRIVER_CONTROL;
 
+        gamepadEx1=new GamepadEx(gamepad1);
+        gamepadEx2=new GamepadEx(gamepad2);
     }
     public void run(){
-        CommandScheduler.getInstance().run();
-        robot.clearBulkCache();
-        if (p1.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) >= 0.5) currentMode = GlobalVars.Modedrive.TURBO;
-        else if (p1.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) >= 0.5) currentMode = GlobalVars.Modedrive.PRECISION;
+        if (gamepadEx1.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) >= 0.5) currentMode = GlobalVars.Modedrive.TURBO;
+        else if (gamepadEx1.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) >= 0.5) currentMode = GlobalVars.Modedrive.PRECISION;
         else currentMode = GlobalVars.Modedrive.DRIVER_CONTROL;
 
         double driveScale = (currentMode == GlobalVars.Modedrive.TURBO) ? GlobalVars.TURBO_SCALE
@@ -44,12 +40,11 @@ public class Drive extends CommandOpMode {
 
         drive.setDrivePowers(new PoseVelocity2d(
                 new Vector2d(
-                        -p1.getLeftX()/driveScale,
-                        -p1.getLeftY()/driveScale
+                        gamepadEx1.getLeftY()/driveScale,
+                        -gamepadEx1.getLeftX()/driveScale
                 ),
-                -p1.getRightX()/driveScale
+                -gamepadEx1.getRightX()/driveScale
         ));
     }
 
 }
-
